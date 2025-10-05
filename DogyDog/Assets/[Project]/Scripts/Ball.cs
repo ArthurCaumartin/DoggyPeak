@@ -1,0 +1,45 @@
+
+using System;
+using DG.Tweening;
+using UnityEngine;
+
+public class Ball : MonoBehaviour
+{
+    public delegate void BallEvent();
+    public static BallEvent OnBallGrab;
+    [SerializeField] private AnimationCurve _scaleCurve;
+    [SerializeField] private Grid _grid;
+
+    public void Launch(Action toToAfter)
+    {
+        float duration = 0.5f;
+        Vector3 startPos = transform.position;
+        Vector2 targetPos = _grid.PickRandomBorderElement().transform.position;
+
+        transform.DOScale(Vector3.one * 1.5f, duration / 2)
+        .OnComplete(() => transform.DOScale(Vector3.one, duration / 2));
+
+        DOTween.To((time) =>
+        {
+            transform.position = Vector3.Lerp(startPos, targetPos, time);
+        }, 0, 1, duration)
+        .OnComplete(() =>
+        {
+            toToAfter?.Invoke();
+        });
+    }
+
+    public void ResetPosition()
+    {
+        transform.position = _grid.ElementArray[0, 0].transform.position;
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        PlayerMovement p = other.GetComponent<PlayerMovement>();
+        if (p)
+        {
+            OnBallGrab.Invoke();
+        }
+    }
+}

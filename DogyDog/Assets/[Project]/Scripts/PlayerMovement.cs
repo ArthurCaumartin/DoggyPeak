@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     public void ResetPosition()
     {
         transform.position = _grid.ElementArray[0, 0].transform.position;
+        _canMove = true;
     }
 
     private void TryMove(Vector2Int moveDirection)

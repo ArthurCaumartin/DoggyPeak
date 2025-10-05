@@ -15,33 +15,43 @@ public class Grid : MonoBehaviour
     public GridElement[,] ElementArray => _gridElementArray;
 
 
-    private void Start()
+    private void Awake()
     {
         Initialize();
-        EnableRandomObstacle(6);
+    }
+
+    public GridElement PickRandomBorderElement()
+    {
+        List<GridElement> elementList = new List<GridElement>();
+        _gridElementArray.LoopIn((x, y) =>
+        {
+            if ((x == _size.x - 1 && y > 0) || (y == _size.y - 1 && x > 0))
+                elementList.Add(_gridElementArray[x, y]);
+        });
+
+        return elementList[Random.Range(0, elementList.Count)];
     }
 
     public void EnableRandomObstacle(int count)
     {
-        // GridElement[,] filterArray = new GridElement[_size.x - 1, _size.y - 1];
-        // _gridElementArray.LoopIn((x, y) =>
-        // {
-        //     if (x < _size.x - 1 && y < _size.y - 1 && x > 1 && y > 1)
-        //         filterArray[x, y] = ElementArray[x, y];
-        // });
+        List<GridElement> elementList = new List<GridElement>();
+        _gridElementArray.LoopIn((x, y) =>
+        {
+            if (x < _size.x - 1 && y < _size.y - 1 && x > 0 && y > 0)
+                elementList.Add(ElementArray[x, y]);
+        });
 
 
-        // _gridElementArray.LoopIn((x, y) =>
-        // {
-        //     _gridElementArray[x, y].EnableObstacle(false);
-        // });
+        _gridElementArray.LoopIn((x, y) =>
+        {
+            _gridElementArray[x, y].EnableObstacle(false);
+        });
 
 
-
-        // System.Random rng = new System.Random();
-        // List<GridElement> elements =
-        // filterArray.Cast<GridElement>().OrderBy(_ => rng.Next()).Take(count).ToList();
-        // elements.ForEach(e => e.EnableObstacle(true));
+        System.Random rng = new System.Random();
+        List<GridElement> elements =
+        elementList.Cast<GridElement>().OrderBy(_ => rng.Next()).Take(count).ToList();
+        elements.ForEach(e => e.EnableObstacle(true));
     }
 
     public bool IsElementFreeToGo(Vector2Int position)
