@@ -460,7 +460,20 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      VEGE_Obstacle_0: 7770902925738982373
+      VEGE_Obstacle_1: -3994249518281906871
+      VEGE_Obstacle_10: 2492216560172365747
+      VEGE_Obstacle_11: -6235598304713467802
+      VEGE_Obstacle_12: 9084153003463307376
+      VEGE_Obstacle_2: -8301957626989679716
+      VEGE_Obstacle_3: 5973555774575819768
+      VEGE_Obstacle_4: -2921260865914612395
+      VEGE_Obstacle_5: -1434477258581178725
+      VEGE_Obstacle_6: -4799473346242006596
+      VEGE_Obstacle_7: -1196501640675612499
+      VEGE_Obstacle_8: -573782488706297700
+      VEGE_Obstacle_9: -4658300295169747489
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
