@@ -10,9 +10,9 @@ public class Ball : MonoBehaviour
     [SerializeField] private AnimationCurve _scaleCurve;
     [SerializeField] private Grid _grid;
 
-    public void Launch(Action toToAfter)
+    public void Launch(float animDuration, Action toToAfter)
     {
-        float duration = 0.5f;
+        float duration = animDuration;
         Vector3 startPos = transform.position;
         Vector2 targetPos = _grid.PickRandomBorderElement().transform.position;
 
@@ -36,6 +36,7 @@ public class Ball : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        print("BAAAAAAAAAAAAAAAAAAAA");
         PlayerMovement p = other.GetComponent<PlayerMovement>();
         if (p)
         {

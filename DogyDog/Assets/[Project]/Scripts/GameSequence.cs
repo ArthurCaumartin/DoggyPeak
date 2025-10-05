@@ -17,10 +17,11 @@ public class GameSequence : MonoBehaviour
     private void StartSequence()
     {
         _playerMovement.ResetPosition();
-        _ball.Launch(() =>
+        _ball.Launch(0.2f, () =>
         {
             _grid.EnableRandomObstacle(6);
             _timer.StartTimer();
+            _playerMovement.CanMove = true;
         });
 
     }
@@ -29,6 +30,7 @@ public class GameSequence : MonoBehaviour
     {
         _timer.StopTimer();
         StartCoroutine(StartDelay(3));
+        _playerMovement.CanMove = false;
     }
 
     void OnEnable()

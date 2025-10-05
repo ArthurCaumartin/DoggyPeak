@@ -37,8 +37,11 @@ public class Grid : MonoBehaviour
         List<GridElement> elementList = new List<GridElement>();
         _gridElementArray.LoopIn((x, y) =>
         {
-            if (x < _size.x - 1 && y < _size.y - 1 && x > 0 && y > 0)
-                elementList.Add(ElementArray[x, y]);
+            if (x < _size.x - 1 && y < _size.y - 1)
+            {
+                if ((x >= 0 && y > 2) || (y >= 0 && x > 2))
+                    elementList.Add(ElementArray[x, y]);
+            }
         });
 
 

@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 velPos;
     private bool _canMove = true;
 
+    public bool CanMove { get => _canMove; set => _canMove = value; }
+
     private void Update()
     {
         Vector2 target = _grid.ElementArray[_currentPosition.x, _currentPosition.y].transform.position;
@@ -20,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void ResetPosition()
     {
+        _currentPosition = Vector2Int.zero;
         transform.position = _grid.ElementArray[0, 0].transform.position;
         _canMove = true;
     }
@@ -41,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
         TryMove(new Vector2Int((int)dir.x, (int)dir.y));
     }
 
-    private IEnumerator Stun(float duration)
+    public IEnumerator Stun(float duration)
     {
         _canMove = false;
         yield return new WaitForSeconds(duration);
