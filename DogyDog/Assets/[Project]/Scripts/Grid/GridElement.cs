@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class GridElement : MonoBehaviour
 {
+    public bool isBloked = false;
     private Grid _grid;
 
 
