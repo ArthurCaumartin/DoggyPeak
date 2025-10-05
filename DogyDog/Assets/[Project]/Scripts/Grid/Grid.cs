@@ -1,6 +1,7 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using Random = UnityEngine.Random;
+using System.Linq;
 
 public class Grid : MonoBehaviour
 {
@@ -17,6 +18,30 @@ public class Grid : MonoBehaviour
     private void Start()
     {
         Initialize();
+        EnableRandomObstacle(6);
+    }
+
+    public void EnableRandomObstacle(int count)
+    {
+        // GridElement[,] filterArray = new GridElement[_size.x - 1, _size.y - 1];
+        // _gridElementArray.LoopIn((x, y) =>
+        // {
+        //     if (x < _size.x - 1 && y < _size.y - 1 && x > 1 && y > 1)
+        //         filterArray[x, y] = ElementArray[x, y];
+        // });
+
+
+        // _gridElementArray.LoopIn((x, y) =>
+        // {
+        //     _gridElementArray[x, y].EnableObstacle(false);
+        // });
+
+
+
+        // System.Random rng = new System.Random();
+        // List<GridElement> elements =
+        // filterArray.Cast<GridElement>().OrderBy(_ => rng.Next()).Take(count).ToList();
+        // elements.ForEach(e => e.EnableObstacle(true));
     }
 
     public bool IsElementFreeToGo(Vector2Int position)

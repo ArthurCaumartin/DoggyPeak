@@ -46,6 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc6ffaa73f57c6a4f811644903369631, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _obstacleVisualPivot: {fileID: 7848641344803311152}
+  isBloked: 0
 --- !u!1 &6006210609859328273
 GameObject:
   m_ObjectHideFlags: 0

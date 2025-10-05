@@ -8,14 +8,14 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Vector2Int _currentPosition;
     [SerializeField] private float _speed = 5;
     [SerializeField] private float _stunDuration = 5;
-    private Vector2 _target;
-    private Vector2 vel;
+    private Vector2 velPos;
     private bool _canMove = true;
 
     private void Update()
     {
         Vector2 target = _grid.ElementArray[_currentPosition.x, _currentPosition.y].transform.position;
-        transform.position = Vector2.SmoothDamp(transform.position, target, ref vel, 1 / _speed);
+        transform.position = Vector2.SmoothDamp(transform.position, target, ref velPos, 1 / _speed);
+
     }
 
     public void ResetPosition()

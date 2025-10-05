@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8113834541830816864}
   - component: {fileID: 1195317619339472125}
   m_Layer: 0
-  m_Name: GridElement_3
+  m_Name: GridElement_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,6 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc6ffaa73f57c6a4f811644903369631, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _obstacleVisualPivot: {fileID: 7848641344803311152}
+  isBloked: 0
 --- !u!1 &6006210609859328273
 GameObject:
   m_ObjectHideFlags: 0
@@ -123,7 +125,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.4408152, g: 0.735849, b: 0.44696173, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
