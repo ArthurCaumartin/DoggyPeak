@@ -23,6 +23,7 @@ public class Grid : MonoBehaviour
 
             _gridElementArray[x, y] = element;
         });
+        transform.position = -new Vector3(_size.x, _size.y, 0) / 2;
     }
 
 
