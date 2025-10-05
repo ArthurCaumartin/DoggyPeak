@@ -660,9 +660,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gridPrefabList:
-  - {fileID: 1195317619339472125, guid: dff6fa9a1dcc2ce4b95164f10594d57a, type: 3}
-  - {fileID: 1195317619339472125, guid: 72f8c1b743343e84b8d2bf12770be383, type: 3}
-  - {fileID: 1195317619339472125, guid: c6ca9722d3276804c9827e39bb931318, type: 3}
+  - {fileID: 3398900025742710938, guid: 7dd54397dfe67eb449fdf33e44b9ca84, type: 3}
   _size: {x: 7, y: 7}
   _forcedElementList:
   - name: Spawn
