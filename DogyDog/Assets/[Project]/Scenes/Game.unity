@@ -641,7 +641,7 @@ Transform:
   m_GameObject: {fileID: 1242792236}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -3, y: -3.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -661,9 +661,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gridPrefabList:
   - {fileID: 1195317619339472125, guid: dff6fa9a1dcc2ce4b95164f10594d57a, type: 3}
-  - {fileID: 1195317619339472125, guid: 72f8c1b743343e84b8d2bf12770be383, type: 3}
-  - {fileID: 1195317619339472125, guid: c6ca9722d3276804c9827e39bb931318, type: 3}
   _size: {x: 7, y: 7}
+  _offset: {x: 0.1, y: 0.1}
   _forcedElementList:
   - name: Spawn
     element: {fileID: 1195317619339472125, guid: 70a4b37060e7fa54d8ba8e838e641248, type: 3}

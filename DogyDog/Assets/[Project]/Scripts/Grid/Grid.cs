@@ -7,6 +7,7 @@ public class Grid : MonoBehaviour
 {
     [SerializeField] private List<GridElement> _gridPrefabList;
     [SerializeField] private Vector2Int _size;
+    [SerializeField] private Vector2 _offset;
     [Space]
     [SerializeField] private List<ForcedGridElement> _forcedElementList;
     private GridElement[,] _gridElementArray;
@@ -18,6 +19,10 @@ public class Grid : MonoBehaviour
     private void Awake()
     {
         Initialize();
+        _gridElementArray.LoopIn((x, y) =>
+        {
+            _gridElementArray[x, y].EnableObstacle(false);
+        });
     }
 
     public GridElement PickRandomBorderElement()
@@ -78,11 +83,11 @@ public class Grid : MonoBehaviour
 
             GridElement element = Instantiate(toInstantiate, transform);
             element.Init(this);
-            element.transform.position = new Vector3(x, y, 0);
+            element.transform.localPosition = new Vector3(x + (_offset.x * x), y + (_offset.y * y), 0);
 
             _gridElementArray[x, y] = element;
         });
-        transform.position = -new Vector3(_size.x - 1f, _size.y - 1f, 0) / 2;
+        // transform.position = new Vector3(-_size.x / 2f, -_size.y / 2f, 0);
     }
 
     private void Update()
