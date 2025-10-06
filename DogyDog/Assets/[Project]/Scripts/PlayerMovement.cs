@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!_grid.IsElementFreeToGo(_currentPosition + moveDirection))
         {
-            StartCoroutine(Stun(_stunDuration));
+            // StartCoroutine(Stun(_stunDuration));
             return;
         }
         _currentPosition += moveDirection;
