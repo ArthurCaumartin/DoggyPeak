@@ -24,5 +24,6 @@ public class Timer : MonoBehaviour
     public void StopTimer()
     {
         _isRuning = false;
+        CanvasManager.Instance?.AddPB(_timer.ToString("00.000"));
     }
 }
