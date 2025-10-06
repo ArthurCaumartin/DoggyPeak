@@ -9,6 +9,12 @@ public class Ball : MonoBehaviour
     public static BallEvent OnBallGrab;
     [SerializeField] private AnimationCurve _scaleCurve;
     [SerializeField] private Grid _grid;
+    private Collider2D _collider;
+
+    void Awake()
+    {
+        _collider = GetComponent<Collider2D>();
+    }
 
     public void Launch(float animDuration, Action toToAfter)
     {
@@ -25,12 +31,14 @@ public class Ball : MonoBehaviour
         }, 0, 1, duration)
         .OnComplete(() =>
         {
+            _collider.enabled = true;
             toToAfter?.Invoke();
         });
     }
 
     public void ResetPosition()
     {
+        _collider.enabled = false;
         transform.position = _grid.ElementArray[0, 0].transform.position;
     }
 

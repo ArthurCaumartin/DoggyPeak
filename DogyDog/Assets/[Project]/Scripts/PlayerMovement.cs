@@ -1,4 +1,5 @@
 using System.Collections;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,24 +8,31 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Grid _grid;
     [SerializeField] private Vector2Int _currentPosition;
     [SerializeField] private float _speed = 5;
+    [SerializeField] private float _rotationSpeed = 5;
     [SerializeField] private float _stunDuration = 5;
     private Vector2 velPos;
     private bool _canMove = true;
 
+    private Vector2 _targetDirection;
+
     public bool CanMove { get => _canMove; set => _canMove = value; }
+    public Vector2Int CurrentPos => _currentPosition;
 
     private void Update()
     {
+        if (!_canMove) return;
         Vector2 target = _grid.ElementArray[_currentPosition.x, _currentPosition.y].transform.position;
         transform.position = Vector2.SmoothDamp(transform.position, target, ref velPos, 1 / _speed);
 
+        float angle = -Vector2.SignedAngle(_targetDirection, Vector2.right);
+        float lerpAngle = Mathf.LerpAngle(transform.eulerAngles.z, angle, Time.deltaTime * _rotationSpeed);
+        transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.x, lerpAngle);
     }
 
     public void ResetPosition()
     {
         _currentPosition = Vector2Int.zero;
         transform.position = _grid.ElementArray[0, 0].transform.position;
-        _canMove = true;
     }
 
     private void TryMove(Vector2Int moveDirection)
@@ -32,9 +40,23 @@ public class PlayerMovement : MonoBehaviour
         if (!_grid.IsElementFreeToGo(_currentPosition + moveDirection))
         {
             // StartCoroutine(Stun(_stunDuration));
+            _canMove = false;
+            Vector2 target = (Vector2)transform.position + ((Vector2)moveDirection / 2);
+            print($"target = P {transform.position} +  I {moveDirection} = {target}");
+            float duration = Mathf.Clamp(_stunDuration - 0.1f, 0, 100);
+            transform.DOMove(target, duration / 2)
+            .OnComplete(() =>
+            {
+                target = _grid.ElementArray[_currentPosition.x, _currentPosition.y].transform.position;
+                transform.DOMove(target, duration / 2)
+                .OnComplete(() => _canMove = true);
+            });
+
             return;
         }
         _currentPosition += moveDirection;
+        if (moveDirection != Vector2Int.zero)
+            _targetDirection = new Vector2(moveDirection.x, moveDirection.y);
     }
 
     private void OnMove(InputValue value)

@@ -1,6 +1,8 @@
+using System;
+
 public static class ArrayUtils
 {
-    public static void LoopIn<T>(this T[,] array, System.Action<int, int> action)
+    public static void LoopIn<T>(this T[,] array, System.Action<int, int> action, Action after = null)
     {
         for (int i = 0; i < array.GetLength(0); i++)
         {
@@ -9,5 +11,6 @@ public static class ArrayUtils
                 action(i, j);
             }
         }
+        after?.Invoke();
     }
 }

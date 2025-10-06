@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using System.Linq;
+using System;
 
 public class Grid : MonoBehaviour
 {
@@ -23,6 +24,27 @@ public class Grid : MonoBehaviour
         {
             _gridElementArray[x, y].HideObstacle();
         });
+    }
+
+    private void Initialize()
+    {
+        _gridElementArray = new GridElement[_size.x, _size.y];
+        _gridElementArray.LoopIn((x, y) =>
+        {
+            GridElement toInstantiate = _gridPrefabList[Random.Range(0, _gridPrefabList.Count)];
+            foreach (var item in _forcedElementList)
+            {
+                if (item.position.x == x && item.position.y == y)
+                    toInstantiate = item.element;
+            }
+
+            GridElement element = Instantiate(toInstantiate, transform);
+            element.Init(this);
+            element.transform.localPosition = new Vector3(x + (_offset.x * x), y + (_offset.y * y), 0);
+
+            _gridElementArray[x, y] = element;
+        });
+        // transform.position = new Vector3(-_size.x / 2f, -_size.y / 2f, 0);
     }
 
     public GridElement PickRandomBorderElement()
@@ -52,56 +74,22 @@ public class Grid : MonoBehaviour
 
         _gridElementArray.LoopIn((x, y) =>
         {
-            _gridElementArray[x, y].EnableObstacle(false);
-        });
-
-
-        System.Random rng = new System.Random();
-        List<GridElement> elements =
-        elementList.Cast<GridElement>().OrderBy(_ => rng.Next()).Take(count).ToList();
-        elements.ForEach(e => e.EnableObstacle(true));
-    }
-
-    public bool IsElementFreeToGo(Vector2Int position)
-    {
-        if (position.x < 0 || position.x >= _size.x || position.y < 0 || position.y >= _size.y)
-            return false;
-        return !_gridElementArray[position.x, position.y].isBloked;
-    }
-
-    private void Initialize()
-    {
-        _gridElementArray = new GridElement[_size.x, _size.y];
-        _gridElementArray.LoopIn((x, y) =>
-        {
-            GridElement toInstantiate = _gridPrefabList[Random.Range(0, _gridPrefabList.Count)];
-            foreach (var item in _forcedElementList)
+            if (x == _size.x - 1 && y == _size.y - 1)
             {
-                if (item.position.x == x && item.position.y == y)
-                    toInstantiate = item.element;
+                print("Last one");
+                _gridElementArray[x, y].EnableObstacle(false, () =>
+                {
+                    System.Random rng = new System.Random();
+                    List<GridElement> elements =
+                    elementList.Cast<GridElement>().OrderBy(_ => rng.Next()).Take(count).ToList();
+                    elements.ForEach(e => e.EnableObstacle(true));
+                });
             }
-
-            GridElement element = Instantiate(toInstantiate, transform);
-            element.Init(this);
-            element.transform.localPosition = new Vector3(x + (_offset.x * x), y + (_offset.y * y), 0);
-
-            _gridElementArray[x, y] = element;
-        });
-        // transform.position = new Vector3(-_size.x / 2f, -_size.y / 2f, 0);
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            _gridElementArray.LoopIn((x, y) =>
+            else
             {
-                _gridElementArray[x, y].GetComponentInChildren<SpriteRenderer>().color = Color.white;
-            });
-
-            GridElement element = GetRandomBorderTopRight();
-            element.GetComponentInChildren<SpriteRenderer>().color = Color.red;
-        }
+                _gridElementArray[x, y].EnableObstacle(false);
+            }
+        });
     }
 
     public GridElement GetRandomBorderTopRight()
@@ -121,5 +109,12 @@ public class Grid : MonoBehaviour
         print($"top: {top}");
         print($"randomX: {randomX} | randomY: {randomY}");
         return _gridElementArray[randomX, randomY];
+    }
+
+    public bool IsElementFreeToGo(Vector2Int position)
+    {
+        if (position.x < 0 || position.x >= _size.x || position.y < 0 || position.y >= _size.y)
+            return false;
+        return !_gridElementArray[position.x, position.y].isBloked;
     }
 }

@@ -1,5 +1,6 @@
 using UnityEngine;
 using DG.Tweening;
+using System;
 
 public class GridElement : MonoBehaviour
 {
@@ -13,8 +14,14 @@ public class GridElement : MonoBehaviour
             _obstacleVisualPivot.SetActive(false);
     }
 
-    public void EnableObstacle(bool enableObstacle)
+    public void EnableObstacle(bool enableObstacle, Action after = null)
     {
+        if (enableObstacle == isBloked)
+        {
+            after?.Invoke();
+            return;
+        }
+
         isBloked = enableObstacle;
         if (_obstacleVisualPivot)
         {
@@ -26,7 +33,12 @@ public class GridElement : MonoBehaviour
             .OnComplete(() =>
             {
                 if (!enableObstacle)
+                {
+                    // print($"Disable : {name} / after animation");
                     _obstacleVisualPivot.SetActive(false);
+                }
+
+                after?.Invoke();
             });
         }
     }
