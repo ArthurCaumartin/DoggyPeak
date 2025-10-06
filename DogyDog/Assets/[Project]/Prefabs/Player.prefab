@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1532851132929082187}
   - component: {fileID: 6917670709862817044}
   m_Layer: 0
-  m_Name: Circle
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,9 +75,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 122
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0, g: 0.32854462, b: 1, a: 1}
+  m_SortingOrder: 60
+  m_Sprite: {fileID: 21300000, guid: 62d4f95e72eaa8f429cd0c5deae01069, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
