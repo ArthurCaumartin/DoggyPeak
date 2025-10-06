@@ -42,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
             // StartCoroutine(Stun(_stunDuration));
             _canMove = false;
             Vector2 target = (Vector2)transform.position + ((Vector2)moveDirection / 2);
-            print($"target = P {transform.position} +  I {moveDirection} = {target}");
+            // print($"target = P {transform.position} +  I {moveDirection} = {target}");
             float duration = Mathf.Clamp(_stunDuration - 0.1f, 0, 100);
             transform.DOMove(target, duration / 2)
             .OnComplete(() =>

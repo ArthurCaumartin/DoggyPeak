@@ -11,6 +11,7 @@ public class GameSequence : MonoBehaviour
 
     private IEnumerator Start()
     {
+        _playerMovement.CanMove = false;
         _playerMovement.ResetPosition();
         _ball.ResetPosition();
         yield return new WaitForSeconds(1f);
