@@ -9,8 +9,9 @@ public class GameSequence : MonoBehaviour
     [SerializeField] private PlayerMovement _playerMovement;
     [SerializeField] private Grid _grid;
 
-    private void Start()
+    private IEnumerator Start()
     {
+        yield return new WaitForSeconds(1f);
         StartSequence();
     }
 

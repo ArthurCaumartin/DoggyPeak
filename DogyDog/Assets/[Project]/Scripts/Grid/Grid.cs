@@ -21,7 +21,7 @@ public class Grid : MonoBehaviour
         Initialize();
         _gridElementArray.LoopIn((x, y) =>
         {
-            _gridElementArray[x, y].EnableObstacle(false);
+            _gridElementArray[x, y].HideObstacle();
         });
     }
 
