@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Sprite _baseSprite;
     [SerializeField] private Sprite _grabBallSprite;
     [SerializeField] private SpriteRenderer _sRenderer;
+    [SerializeField] private Transform _ballPivot;
     [Space]
     [SerializeField] private Grid _grid;
     [SerializeField] private Vector2Int _currentPosition;
@@ -48,6 +49,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!_grid.IsElementFreeToGo(_currentPosition + moveDirection))
         {
+            AudioManager.Instance.PlaySound(AudioManager.Instance.BlockSound);
+
             // StartCoroutine(Stun(_stunDuration));
             _canMove = false;
             Vector2 target = (Vector2)transform.position + ((Vector2)moveDirection / 2);
@@ -87,8 +90,10 @@ public class PlayerMovement : MonoBehaviour
         Ball ball = other.GetComponent<Ball>();
         if (ball)
         {
+            AudioManager.Instance.PlaySound(AudioManager.Instance.GrabSound);
             _sRenderer.sprite = _grabBallSprite;
-            ball.transform.SetParent(transform);
+            ball.transform.SetParent(_ballPivot);
+            ball.transform.localPosition = Vector3.zero;
             ball.SetSprite(false);
             _canTriggerEnd = true;
             return;

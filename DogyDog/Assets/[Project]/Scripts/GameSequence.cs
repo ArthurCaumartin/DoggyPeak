@@ -1,5 +1,4 @@
 using System.Collections;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class GameSequence : MonoBehaviour
@@ -21,7 +20,7 @@ public class GameSequence : MonoBehaviour
     private void StartSequence()
     {
         print("Start Sequence");
-        _ball.Launch(0.2f, () =>
+        _ball.Launch(1.5f, () =>
         {
             _grid.EnableRandomObstacle(6);
             _timer.StartTimer();

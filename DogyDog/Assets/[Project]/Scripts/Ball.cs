@@ -21,7 +21,7 @@ public class Ball : MonoBehaviour
         Vector3 startPos = transform.position;
         Vector2 targetPos = _grid.PickRandomBorderElement().transform.position;
 
-        transform.DOScale(Vector3.one * 1.5f, duration / 2)
+        transform.DOScale(Vector3.one * 3f, duration / 2)
         .OnComplete(() => transform.DOScale(Vector3.one, duration / 2));
 
         DOTween.To((time) =>
@@ -45,6 +45,6 @@ public class Ball : MonoBehaviour
 
     public void SetSprite(bool value)
     {
-        _sprite.gameObject.SetActive(value);
+        // _sprite.gameObject.SetActive(value);
     }
 }
