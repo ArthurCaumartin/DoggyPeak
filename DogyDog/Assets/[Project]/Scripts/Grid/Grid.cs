@@ -76,7 +76,7 @@ public class Grid : MonoBehaviour
         {
             if (x == _size.x - 1 && y == _size.y - 1)
             {
-                print("Last one");
+                // print("Last one");
                 _gridElementArray[x, y].EnableObstacle(false, () =>
                 {
                     System.Random rng = new System.Random();

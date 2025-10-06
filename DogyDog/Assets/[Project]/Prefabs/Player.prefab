@@ -165,10 +165,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e66d0351edf1215448648b36276f26f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sequence: {fileID: 0}
+  _baseSprite: {fileID: 21300000, guid: 62d4f95e72eaa8f429cd0c5deae01069, type: 3}
+  _grabBallSprite: {fileID: 21300000, guid: cc4e635f24c132849a409426ead7a1a0, type: 3}
+  _sRenderer: {fileID: 6917670709862817044}
   _grid: {fileID: 0}
   _currentPosition: {x: 0, y: 0}
   _speed: 30
-  _stunDuration: 5
+  _rotationSpeed: 20
+  _stunDuration: 0.2
 --- !u!50 &7684690468444257794
 Rigidbody2D:
   serializedVersion: 5
@@ -226,7 +231,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0

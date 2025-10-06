@@ -5,6 +5,12 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField] private GameSequence _sequence;
+    [Space]
+    [SerializeField] private Sprite _baseSprite;
+    [SerializeField] private Sprite _grabBallSprite;
+    [SerializeField] private SpriteRenderer _sRenderer;
+    [Space]
     [SerializeField] private Grid _grid;
     [SerializeField] private Vector2Int _currentPosition;
     [SerializeField] private float _speed = 5;
@@ -14,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     private bool _canMove = true;
 
     private Vector2 _targetDirection;
+    private bool _canTriggerEnd = false;
 
     public bool CanMove { get => _canMove; set => _canMove = value; }
     public Vector2Int CurrentPos => _currentPosition;
@@ -31,6 +38,8 @@ public class PlayerMovement : MonoBehaviour
 
     public void ResetPosition()
     {
+        _sRenderer.sprite = _baseSprite;
+        _canTriggerEnd = false;
         _currentPosition = Vector2Int.zero;
         transform.position = _grid.ElementArray[0, 0].transform.position;
     }
@@ -72,4 +81,25 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(duration);
         _canMove = true;
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        Ball ball = other.GetComponent<Ball>();
+        if (ball)
+        {
+            _sRenderer.sprite = _grabBallSprite;
+            ball.transform.SetParent(transform);
+            ball.SetSprite(false);
+            _canTriggerEnd = true;
+            return;
+        }
+
+        if (other.tag == "EndTrigger" && _canTriggerEnd)
+        {
+            _canTriggerEnd = false;
+            _sequence.EndSequence();
+        }
+    }
+
 }
+

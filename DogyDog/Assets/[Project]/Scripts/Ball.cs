@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
-    public delegate void BallEvent();
-    public static BallEvent OnBallGrab;
+    [SerializeField] private SpriteRenderer _sprite;
     [SerializeField] private AnimationCurve _scaleCurve;
     [SerializeField] private Grid _grid;
     private Collider2D _collider;
@@ -38,17 +37,14 @@ public class Ball : MonoBehaviour
 
     public void ResetPosition()
     {
+        SetSprite(true);
+        transform.SetParent(null);
         _collider.enabled = false;
         transform.position = _grid.ElementArray[0, 0].transform.position;
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    public void SetSprite(bool value)
     {
-        print("BAAAAAAAAAAAAAAAAAAAA");
-        PlayerMovement p = other.GetComponent<PlayerMovement>();
-        if (p)
-        {
-            OnBallGrab.Invoke();
-        }
+        _sprite.gameObject.SetActive(value);
     }
 }
