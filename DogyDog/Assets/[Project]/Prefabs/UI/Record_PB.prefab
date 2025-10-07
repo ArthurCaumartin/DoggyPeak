@@ -65,10 +65,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "--------\nTime : \n00.000"
+  m_text: "------\nTime : \n00.000"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a5a3957db13da0942a1f367c5aacad06, type: 2}
-  m_sharedMaterial: {fileID: -4390702380239927146, guid: a5a3957db13da0942a1f367c5aacad06, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e892a39cb6d394245877a20375575d06, type: 2}
+  m_sharedMaterial: {fileID: -4706496349745586045, guid: e892a39cb6d394245877a20375575d06, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -104,7 +104,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: 30
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0

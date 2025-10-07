@@ -55,7 +55,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: af651df008b8cdc4382973231f36a913, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -97,7 +97,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4649421078411503378, guid: dff6fa9a1dcc2ce4b95164f10594d57a, type: 3}
       propertyPath: m_Name
-      value: GridElement_Plant
+      value: GridElement_Plant 2
       objectReference: {fileID: 0}
     - target: {fileID: 8113834541830816864, guid: dff6fa9a1dcc2ce4b95164f10594d57a, type: 3}
       propertyPath: m_LocalPosition.x
