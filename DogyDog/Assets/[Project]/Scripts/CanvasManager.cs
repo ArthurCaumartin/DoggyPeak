@@ -8,7 +8,7 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] private RectTransform _pbContainer;
     [SerializeField] private GameObject _pbPrefab;
     [SerializeField] private TextMeshProUGUI _pbText;
-    private int _lastPb = -100;
+    private int _lastPb = 100;
     private char[] _randomChar = new[] { '@', '#', '0', '%', '$' };
 
     void Awake()
@@ -20,9 +20,9 @@ public class CanvasManager : MonoBehaviour
     public void AddPB(float value)
     {
         string s = value.ToString("00.000");
-        if (_lastPb > value)
+        if (value < _lastPb)
         {
-            _pbText.text = "PB : " + s;
+            _pbText.text = "PB:" + s;
         }
         GameObject obj = Instantiate(_pbPrefab, _pbContainer.transform);
         obj.transform.SetSiblingIndex(0);
