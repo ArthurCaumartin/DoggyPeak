@@ -8,7 +8,7 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] private RectTransform _pbContainer;
     [SerializeField] private GameObject _pbPrefab;
     [SerializeField] private TextMeshProUGUI _pbText;
-    private int _lastPb = 100;
+    private float _lastPb = 100;
     private char[] _randomChar = new[] { '@', '#', '0', '%', '$' };
 
     void Awake()
@@ -17,11 +17,13 @@ public class CanvasManager : MonoBehaviour
         _pbText.text = "PB:00.000";
     }
 
-    public void AddPB(float value)
+    public void AddNewTime(float time)
     {
-        string s = value.ToString("00.000");
-        if (value < _lastPb)
+        string s = time.ToString("00.000");
+        // print("New Time: " + time + " Last PB: " + _lastPb);
+        if (time < _lastPb)
         {
+            _lastPb = time;
             _pbText.text = "PB:" + s;
         }
         GameObject obj = Instantiate(_pbPrefab, _pbContainer.transform);
@@ -30,8 +32,6 @@ public class CanvasManager : MonoBehaviour
         StartCoroutine(TextAnimation(textMesh, s));
         // textMesh.text = "--------\nTime :\n" + s;
     }
-
-
 
     public IEnumerator TextAnimation(TextMeshProUGUI textMesh, string time)
     {
