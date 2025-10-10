@@ -11,6 +11,8 @@ public class AudioManager : MonoBehaviour
     public AudioClip GoodBoySound;
     public AudioClip BarkClip;
 
+    private bool _canPlayBark = true;
+
 
     private void Awake()
     {
@@ -27,7 +29,15 @@ public class AudioManager : MonoBehaviour
 
     public void PlayBark()
     {
+        if (!_canPlayBark) return;
+        _canPlayBark = false;
+        Invoke(nameof(ResetBark), BarkClip.length);
         if (Random.value < _backProba)
             PlaySound(BarkClip);
+    }
+
+    private void ResetBark()
+    {
+        _canPlayBark = true;
     }
 }

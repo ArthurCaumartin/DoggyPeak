@@ -67,7 +67,10 @@ public class PlayerMovement : MonoBehaviour
 
             return;
         }
-        AudioManager.Instance.PlayBark();
+        Ball b = _ballPivot.GetComponentInChildren<Ball>();
+        if (b == null)
+            AudioManager.Instance.PlayBark();
+        
         _currentPosition += moveDirection;
         if (moveDirection != Vector2Int.zero)
             _targetDirection = new Vector2(moveDirection.x, moveDirection.y);
@@ -77,7 +80,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!_canMove) return;
         Vector2 dir = value.Get<Vector2>();
-        if( dir == Vector2.zero) return;
+        if (dir == Vector2.zero) return;
         TryMove(new Vector2Int((int)dir.x, (int)dir.y));
     }
 

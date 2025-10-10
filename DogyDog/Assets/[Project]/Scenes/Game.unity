@@ -1057,7 +1057,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _audioSource: {fileID: 1170460202}
-  _backProba: 0.12
+  _backProba: 0.3
   BlockSound: {fileID: 8300000, guid: b4d09e5c70e332b49a8887ec4fbdc0dc, type: 3}
   GrabSound: {fileID: 8300000, guid: 595af19ebb331f64ea32fec868899782, type: 3}
   GoodBoySound: {fileID: 8300000, guid: 0cd38739f665dc94c9dca87faded12a9, type: 3}
