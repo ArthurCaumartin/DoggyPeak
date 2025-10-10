@@ -960,7 +960,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.8
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1057,10 +1057,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _audioSource: {fileID: 1170460202}
+  _backProba: 0.2
   BlockSound: {fileID: 8300000, guid: b4d09e5c70e332b49a8887ec4fbdc0dc, type: 3}
   GrabSound: {fileID: 8300000, guid: 595af19ebb331f64ea32fec868899782, type: 3}
-  GoodBoySound: {fileID: 0}
-  BarkClip: {fileID: 0}
+  GoodBoySound: {fileID: 8300000, guid: 0cd38739f665dc94c9dca87faded12a9, type: 3}
+  BarkClip: {fileID: 8300000, guid: 86c4dd2a0c0942c418e0f6095e6fa0d2, type: 3}
 --- !u!1 &1226259739
 GameObject:
   m_ObjectHideFlags: 0
