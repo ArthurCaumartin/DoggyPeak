@@ -1059,6 +1059,8 @@ MonoBehaviour:
   _audioSource: {fileID: 1170460202}
   BlockSound: {fileID: 8300000, guid: b4d09e5c70e332b49a8887ec4fbdc0dc, type: 3}
   GrabSound: {fileID: 8300000, guid: 595af19ebb331f64ea32fec868899782, type: 3}
+  GoodBoySound: {fileID: 0}
+  BarkClip: {fileID: 0}
 --- !u!1 &1226259739
 GameObject:
   m_ObjectHideFlags: 0
@@ -1611,10 +1613,6 @@ PrefabInstance:
     - target: {fileID: 1223927241959863147, guid: 2f2c393187713774b8770dbb216483b8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2498446922816860520, guid: 2f2c393187713774b8770dbb216483b8, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2.596468
       objectReference: {fileID: 0}
     - target: {fileID: 2766047523554729985, guid: 2f2c393187713774b8770dbb216483b8, type: 3}
       propertyPath: m_Name
