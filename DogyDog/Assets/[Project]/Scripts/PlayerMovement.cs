@@ -45,8 +45,9 @@ public class PlayerMovement : MonoBehaviour
         transform.position = _grid.ElementArray[0, 0].transform.position;
     }
 
-    private void TryMove(Vector2Int moveDirection)
+    public void TryMove(Vector2Int moveDirection)
     {
+        if (!_canMove) return;
         if (!_grid.IsElementFreeToGo(_currentPosition + moveDirection))
         {
             AudioManager.Instance.PlaySound(AudioManager.Instance.BlockSound);
@@ -66,6 +67,7 @@ public class PlayerMovement : MonoBehaviour
 
             return;
         }
+        AudioManager.Instance.PlaySound(AudioManager.Instance.BarkClip);
         _currentPosition += moveDirection;
         if (moveDirection != Vector2Int.zero)
             _targetDirection = new Vector2(moveDirection.x, moveDirection.y);
@@ -107,4 +109,3 @@ public class PlayerMovement : MonoBehaviour
     }
 
 }
-

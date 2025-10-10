@@ -7,6 +7,8 @@ public class AudioManager : MonoBehaviour
 
     public AudioClip BlockSound;
     public AudioClip GrabSound;
+    public AudioClip GoodBoySound;
+    public AudioClip BarkClip;
 
 
     private void Awake()
