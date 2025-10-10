@@ -50,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
         if (!_canMove) return;
         if (!_grid.IsElementFreeToGo(_currentPosition + moveDirection))
         {
-            AudioManager.Instance.PlayBark();
+            AudioManager.Instance.PlaySound(AudioManager.Instance.BlockSound);
 
             // StartCoroutine(Stun(_stunDuration));
             _canMove = false;
@@ -67,7 +67,7 @@ public class PlayerMovement : MonoBehaviour
 
             return;
         }
-        AudioManager.Instance.PlaySound(AudioManager.Instance.BarkClip);
+        AudioManager.Instance.PlayBark();
         _currentPosition += moveDirection;
         if (moveDirection != Vector2Int.zero)
             _targetDirection = new Vector2(moveDirection.x, moveDirection.y);
@@ -77,6 +77,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!_canMove) return;
         Vector2 dir = value.Get<Vector2>();
+        if( dir == Vector2.zero) return;
         TryMove(new Vector2Int((int)dir.x, (int)dir.y));
     }
 
