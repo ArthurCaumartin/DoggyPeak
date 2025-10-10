@@ -50,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
         if (!_canMove) return;
         if (!_grid.IsElementFreeToGo(_currentPosition + moveDirection))
         {
-            AudioManager.Instance.PlaySound(AudioManager.Instance.BlockSound);
+            AudioManager.Instance.PlayBark();
 
             // StartCoroutine(Stun(_stunDuration));
             _canMove = false;
