@@ -25,6 +25,7 @@ public class CanvasManager : MonoBehaviour
         {
             _lastPb = time;
             _pbText.text = "PB:" + s;
+            AudioManager.Instance.PlaySound(AudioManager.Instance.GoodBoySound);
         }
         GameObject obj = Instantiate(_pbPrefab, _pbContainer.transform);
         obj.transform.SetSiblingIndex(0);
