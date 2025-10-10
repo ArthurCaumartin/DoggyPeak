@@ -4,7 +4,7 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
     [SerializeField] private AudioSource _audioSource;
-    private bool _isBarking;
+    [SerializeField] private float _backProba = 0.2f;
 
     public AudioClip BlockSound;
     public AudioClip GrabSound;
@@ -27,8 +27,7 @@ public class AudioManager : MonoBehaviour
 
     public void PlayBark()
     {
-        _isBarking = !_isBarking;
-        if (_isBarking)
+        if (Random.value < _backProba)
             PlaySound(BarkClip);
     }
 }
