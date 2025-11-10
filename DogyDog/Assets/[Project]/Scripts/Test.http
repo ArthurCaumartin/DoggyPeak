@@ -1,0 +1,26 @@
+
+POST https://gamesapi.bienvu.net/doggypeak/add?name=TESTNAME&score=1234
+
+###
+
+GET https://gamesapi.bienvu.net/doggypeak/list
+
+###
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

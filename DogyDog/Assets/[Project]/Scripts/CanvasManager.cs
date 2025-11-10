@@ -15,6 +15,7 @@ public class CanvasManager : MonoBehaviour
     {
         Instance = this;
         _pbText.text = "PB:00.000";
+        LeaderBoard.GetLeaderBoard();
     }
 
     public void AddNewTime(float time)
