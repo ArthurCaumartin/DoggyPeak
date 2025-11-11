@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class Timer : MonoBehaviour
 {
@@ -25,5 +26,6 @@ public class Timer : MonoBehaviour
     {
         _isRuning = false;
         //TODO post avec API
+        LeaderBoard.PostTimeData(new Player(LeaderBoard.currentPlayerName, _timer));
     }
 }

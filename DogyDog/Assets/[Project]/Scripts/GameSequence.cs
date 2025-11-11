@@ -19,7 +19,7 @@ public class GameSequence : MonoBehaviour
 
     private void StartSequence()
     {
-        print("Start Sequence");
+        // print("Start Sequence");
         _ball.Launch(1.5f, () =>
         {
             _grid.EnableRandomObstacle(6);

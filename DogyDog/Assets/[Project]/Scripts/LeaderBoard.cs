@@ -11,21 +11,23 @@ public static class LeaderBoard
     public static event OnLeaderBoardEvent OnLeaderBoardFetched;
     private static Player[] _playerArray = null;
     private static Task _taskLeaderBordFetch;
+    private static float _fetchTime = 0;
+
+    public static string currentPlayerName = "";
 
     public static async void FetchLeaderBoard()
     {
         _playerArray = null;
         GetLeaderBoard();
-        float time = 0;
+        _fetchTime = 0;
         float fetchDelay = 5;
 
         while (Application.isPlaying)
         {
-            time += Time.deltaTime;
+            _fetchTime += Time.deltaTime;
             // Debug.Log("FetchLeaderBoard while loop");
-            if (time >= fetchDelay)
+            if (_fetchTime >= fetchDelay)
             {
-                time = 0;
                 GetLeaderBoard();
             }
             await Task.Yield();
@@ -34,6 +36,8 @@ public static class LeaderBoard
 
     private static async void GetLeaderBoard()
     {
+        Debug.Log("Fetching LeaderBoard Data...");
+        _fetchTime = 0;
         string url = "https://gamesapi.bienvu.net/doggypeak/list";
         UnityWebRequest request = UnityWebRequest.Get(url);
         await request.SendWebRequest();
@@ -43,8 +47,8 @@ public static class LeaderBoard
             Debug.LogError("Error fetching leaderboard: " + request.error);
             return;
         }
-        // else
-        //     Debug.Log("Leaderboard data: " + request.downloadHandler.text);
+        else
+            Debug.Log("Leaderboard data get: " + request.downloadHandler.text);
 
 
         string json = request.downloadHandler.text;
@@ -75,7 +79,7 @@ public static class LeaderBoard
                 return;
             }
         }
-        Debug.Log("Data is same, nothing done !");
+        // Debug.Log("Data is same, nothing done !"); 
     }
 
     private static void SetNewData(Player[] newPlayerArray)
@@ -84,7 +88,24 @@ public static class LeaderBoard
         OnLeaderBoardFetched.Invoke(_playerArray);
     }
 
+    public static async void PostTimeData(Player newPlayer)
+    {
+        if (currentPlayerName == "")
+            return;
 
+        Debug.Log("Posting Time Data for player : " + currentPlayerName);
+        string playerData = JsonUtility.ToJson(newPlayer);
+        UnityWebRequest request =
+        UnityWebRequest.Post("https://gamesapi.bienvu.net/doggypeak/add", playerData, "application/json");
+        await request.SendWebRequest();
+        if (request.result != UnityWebRequest.Result.Success)
+        {
+            Debug.LogError("Error posting time data : " + request.error);
+            return;
+        }
+        Debug.Log("Successfully posted time data for : " + currentPlayerName);
+        GetLeaderBoard();
+    }
 }
 
 [Serializable]
