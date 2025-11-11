@@ -8,13 +8,17 @@ public class InputFieldNameSetter : MonoBehaviour
 
     void Start()
     {
-        _inputField.onEndEdit.AddListener((value) => SetPlayerName());
+        // _inputField.onEndEdit.AddListener((value) => SetPlayerName());
     }
 
     public void SetPlayerName()
     {
+        if(_inputField.text.Trim() == "")
+        {
+            return;
+        }
         print("Player Name Set To: " + _inputField.text);
-        LeaderBoard.currentPlayerName = _inputField.text;
+        LeaderBoard.currentPlayerName = _inputField.text.ToLower();
         SceneManager.LoadScene("Game");
     }
 }
