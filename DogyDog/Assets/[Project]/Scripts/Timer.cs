@@ -24,6 +24,6 @@ public class Timer : MonoBehaviour
     public void StopTimer()
     {
         _isRuning = false;
-        CanvasManager.Instance?.AddNewTime(_timer);
+        //TODO post avec API
     }
 }
